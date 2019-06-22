@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+//darknet yolov3 object detection
+service ObjectDetection {
+  //客户端到服务器端的流式RPC
+  //对图像的数据进行对象检测
+  rpc detect (stream UploadImageRequest) returns (DetectResponse) {}
+}
+
+//上传图像数据块
+message UploadImageRequest {
+  bytes data_block = 1;
+}
+
+//返回对象检测结果
+message DetectResponse {
+  repeated Object object = 1;
+}
+
+//对象的边框
+message Rectangle {
+  int32 x = 1;
+  int32 y = 2;
+  int32 w = 3;
+  int32 h = 4;
+}
+
+//检测出的对象
+message Object {
+  string name = 1;
+  float confidence = 2;
+  Rectangle rectangle = 3;
+}

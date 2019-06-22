@@ -5,7 +5,6 @@ Dockerfile
 .gitignore
 README.md
 object_detection.proto
-darknet_model_client.py
 __pycache__
 model
 test-images

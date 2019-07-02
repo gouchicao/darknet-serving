@@ -13,5 +13,7 @@ RUN pip3 install --no-cache-dir -r requirements.txt
 
 ADD . /darknet-serving/
 
+EXPOSE 7713
+
 ENTRYPOINT ["python3", "darknet_model_server.py"]
 

@@ -2,38 +2,36 @@
 > 基于darknet的模型服务器
 
 ## 获得darknet-serving镜像（GPU）
-> 有两种方式：拉取hub.docker上的镜像和自己在本地生成镜像。
-
-### 1. 拉取darknet-serving镜像
+1. 拉取Docker Hub上的darknet-serving镜像
 ```bash
 $ sudo docker pull gouchicao/darknet-serving:latest-gpu
 ```
 
-### 2. 构建darknet-serving镜像
+2. 自己构建darknet-serving镜像
 ```bash
 $ sudo docker build -t darknet-serving:latest-gpu .
 ```
 
-## 准备您的模型
-* 模型目录结构
-    ```
-    model   　　　　　　　　　　模型目录
-    ├── voc.data　　　　　　   配置文件
-    ├── voc.names　　　　　　  标签名
-    ├── yolov3.cfg　　　　　   YOLOv3神经网络文件
-    └── yolov3_final.weights 模型的权重值
-    ```
-
-* 编辑voc.data
-    ```
-    classes= 2
-    names = model/voc.names
-    ```
-
 ## 运行模型预测服务
-> 使用你的模型绝对路径替换$model_dir
+1. 使用绑定挂载点
 ```bash
+# 使用您本机的绝对路径设置model_dir
+$ model_dir=/home/wjunjian/github/gouchicao/darknet/model-zoo/platen-switch/model
+
+# 部署模型
 $ sudo docker run --runtime=nvidia -it --name=darknet-serving \
-    --volume=$model_dir:/darknet-serving/model \
+    --volume=$model_dir:/model \
     darknet-serving:latest-gpu
+```
+
+2. 使用存储卷
+```bash
+# 创建存储卷
+$ sudo docker run --name darknet-model-platen-switch --volume /model \
+    gouchicao/darknet-model-platen-switch:latest
+
+# 部署模型
+$ sudo docker run --runtime=nvidia -it --name=darknet-serving-platen-switch -p 7713:7713 \
+    --volumes-from darknet-model-platen-switch \
+    gouchicao/darknet-serving:latest-gpu
 ```

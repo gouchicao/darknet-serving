@@ -9,7 +9,7 @@ $ sudo docker pull gouchicao/darknet-serving:latest-gpu
 
 2. 自己构建darknet-serving镜像
 ```bash
-$ sudo docker build -t darknet-serving:latest-gpu .
+$ sudo docker build -t gouchicao/darknet-serving:latest-gpu .
 ```
 
 ## 运行模型预测服务
@@ -21,7 +21,7 @@ $ model_dir=/home/wjunjian/github/gouchicao/darknet/model-zoo/platen-switch/mode
 # 部署模型
 $ sudo docker run --runtime=nvidia -it --name=darknet-serving \
     --volume=$model_dir:/model \
-    darknet-serving:latest-gpu
+    gouchicao/darknet-serving:latest-gpu
 ```
 
 2. 使用存储卷

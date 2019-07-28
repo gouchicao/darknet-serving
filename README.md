@@ -1,7 +1,8 @@
 # darknet-serving
 > 基于darknet的模型服务器
 
-## 获得darknet-serving镜像（GPU）
+## 获得darknet-serving镜像
+### GPU
 1. 拉取Docker Hub上的darknet-serving镜像
 ```bash
 $ sudo docker pull gouchicao/darknet-serving:latest-gpu
@@ -9,10 +10,25 @@ $ sudo docker pull gouchicao/darknet-serving:latest-gpu
 
 2. 自己构建darknet-serving镜像
 ```bash
-$ sudo docker build -t gouchicao/darknet-serving:latest-gpu .
+$ sudo docker build -f gpu/Dockerfile -t gouchicao/darknet-serving:latest .
 ```
 
+### CPU
+1. 拉取Docker Hub上的darknet-serving镜像
+```bash
+$ sudo docker pull gouchicao/darknet-serving:latest
+```
+
+2. 自己构建darknet-serving镜像
+```bash
+$ sudo docker build -f cpu/Dockerfile -t gouchicao/darknet-serving:latest .
+```
+
+
 ## 运行模型预测服务
+
+**运行CPU版本不需要加 `--runtime=nvidia`**，镜像使用 `gouchicao/darknet-serving:latest`
+
 1. 使用绑定挂载点
 ```bash
 # 使用您本机的绝对路径设置model_dir

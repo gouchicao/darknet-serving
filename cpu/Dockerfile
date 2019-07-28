@@ -1,4 +1,4 @@
-FROM nvidia/cuda:10.0-cudnn7-runtime-ubuntu18.04
+FROM ubuntu:18.04
 LABEL maintainer="wang-junjian@qq.com"
 
 RUN apt-get update && apt-get install -y \
@@ -11,7 +11,8 @@ ADD requirements.txt /darknet-serving/
 WORKDIR /darknet-serving
 RUN pip3 install --no-cache-dir -r requirements.txt
 
-ADD . /darknet-serving/
+ADD *.py /darknet-serving/
+ADD ./cpu/libdarknet.so /darknet-serving/
 
 EXPOSE 7713
 

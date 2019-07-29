@@ -5,4 +5,5 @@ model_files = dict(
 )
 
 server_max_workers = 10
-server_address = '[::]:7713'
+server_address = '0.0.0.0'
+server_port = 7713

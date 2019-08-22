@@ -64,7 +64,7 @@ sudo docker run --rm --runtime=nvidia -it --name=darknet-serving-helmet -p 7713:
 
 * CPU
 ```bash
-sudo docker run --rm --runtime=nvidia -it --name=darknet-serving-helmet -p 7713:7713 \
+sudo docker run --rm -it --name=darknet-serving-helmet -p 7713:7713 \
     --volumes-from darknet-model-helmet \
     gouchicao/darknet-serving:latest
 ```
@@ -79,7 +79,7 @@ sudo docker run --rm --runtime=nvidia -it --name=darknet-serving-platen-switch -
 
 * CPU
 ```bash
-sudo docker run --rm --runtime=nvidia -it --name=darknet-serving-platen-switch -p 7713:7713 \
+sudo docker run --rm -it --name=darknet-serving-platen-switch -p 7713:7713 \
     --volumes-from darknet-model-platen-switch \
     gouchicao/darknet-serving:latest
 ```
@@ -94,7 +94,7 @@ sudo docker run --rm --runtime=nvidia -it --name=darknet-serving-bird-nest -p 77
 
 * CPU
 ```bash
-sudo docker run --rm --runtime=nvidia -it --name=darknet-serving-bird-nest -p 7713:7713 \
+sudo docker run --rm -it --name=darknet-serving-bird-nest -p 7713:7713 \
     --volumes-from darknet-model-bird-nest \
     gouchicao/darknet-serving:latest
 ```
